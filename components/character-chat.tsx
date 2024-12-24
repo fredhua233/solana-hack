@@ -10,7 +10,7 @@ interface CharacterChatProps {
 export default function CharacterChat({ character, messages = [] }: CharacterChatProps) {
   return (
     <div className="bg-black/50 p-4 rounded-lg h-[200px] overflow-y-auto">
-      {messages.map((message, index) => (
+      {messages.slice().reverse().map((message, index) => (
         <div key={index} className="mb-2">
           <span className="font-bold">{character.name}:</span> {message}
         </div>

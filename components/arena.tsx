@@ -20,7 +20,7 @@ export default function Arena() {
     left: {
       id: '1',
       name: 'Luigi Magione',
-      avatar: '/luigi.gif',
+      avatar: 'https://upcdn.io/FW25cFg/raw/luigi.gif',
       score: 0,
       tips: 0,
       wallet: 'Erq2wKwDXF7vEW8uNn2emUa8JuwCkfLX7rATjmnJ6NNj'
@@ -28,7 +28,7 @@ export default function Arena() {
     right: {
       id: '2',
       name: 'Brian Thompson',
-      avatar: '/brian.gif',
+      avatar: 'https://upcdn.io/FW25cFg/raw/brian.gif',
       score: 0,
       tips: 0,
       wallet: 'HvQp3SYY9qUKqyFZ3L8TfufZD62S5N6qq1itJM9f9RTd'
