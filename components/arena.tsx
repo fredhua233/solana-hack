@@ -12,6 +12,7 @@ import Image from 'next/image';
 export default function Arena() {
   const [timeLeft, setTimeLeft] = useState(80) // 1:20 in seconds
   const [userWalletAddress, setUserWalletAddress] = useState('');
+  const [tipAmount, setTipAmount] = useState(10); // Default tip amount
   const [isGameOver, setIsGameOver] = useState(false)
   const [characters, setCharacters] = useState<{
     left: Character
@@ -79,7 +80,7 @@ export default function Arena() {
       return;
     }
     const recipientAddress = characters[characterId === '1' ? 'left' : 'right'].wallet;
-    const amount = 10; // The tip amount
+    const amount = tipAmount; // The tip amount
 
     const result = await sendTip(userWalletAddress, recipientAddress, amount);
     if (result.success) {
@@ -143,6 +144,25 @@ export default function Arena() {
           />
         </div>
 
+        <div className="mb-4">
+          <label htmlFor="tipAmount" className="block text-sm font-medium text-slate-100">
+            Select Tip Amount
+          </label>
+          <select
+            id="tipAmount"
+            name="tipAmount"
+            value={tipAmount}
+            onChange={(e) => setTipAmount(Number(e.target.value))}
+            className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+          >
+            <option value={10}>$1</option>
+            <option value={20}>$2</option>
+            <option value={50}>$5</option>
+            <option value={100}>$10</option>
+          </select>
+        </div>
+
+
         <div className="grid grid-cols-2 gap-4">
           {/* Left Character */}
           <div className="bg-gradient-to-r from-[#942832] to-transparent p-6 rounded-lg">
@@ -159,7 +179,7 @@ export default function Arena() {
               onClick={() => handleTip(characters.left.id)}
               className="w-full bg-[#ff4656] text-white py-3 rounded-lg font-mono"
             >
-              SEND $10 TIPS IN $XXX
+              SEND ${tipAmount} TIPS IN $XXX
             </button>
             <div className="mt-4">
               <CharacterChat
@@ -184,7 +204,7 @@ export default function Arena() {
               onClick={() => handleTip(characters.right.id)}
               className="w-full bg-[#146ef5] text-white py-3 rounded-lg font-mono"
             >
-              SEND $10 TIPS IN $XXX
+              SEND ${tipAmount} TIPS IN $XXX
             </button>
             <div className="mt-4">
               <CharacterChat
